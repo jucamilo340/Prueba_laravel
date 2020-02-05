@@ -8,11 +8,12 @@ use App\Product;
 
 class ProductController extends Controller
 {
-    //
+    //list all produts
     public function getAll(){
         $products=Product::all();
         return $products;
     }
+    //create a product
     public function add(Request $request){
         
         $name=$request->input('name');
@@ -46,9 +47,15 @@ class ProductController extends Controller
         return $product;
 
     }
+    //find a product with an id
     public function get($id){
         $product=Product::find($id);
         return $product;
     }
+    public function delete($id){
+        $product=$this->get($id);
+        $product->delete();
+        return $product;
+      }
 
 }

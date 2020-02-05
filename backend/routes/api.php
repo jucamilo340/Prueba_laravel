@@ -21,5 +21,7 @@ Route::post('register','UserController@add')->name('user.add');
 //PRODUCTS
 Route::get('product','ProductController@getAll')->name('products.list');
 Route::post('product','ProductController@add')->name('product.add');
+Route::get('product/{id}','ProductController@get')->name('product.get');
+Route::post('product/delete/{id}','ProductController@delete')->name('product.delete');
 //CATEGORIES
 

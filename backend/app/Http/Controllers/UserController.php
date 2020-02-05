@@ -8,9 +8,23 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //
+    //create a new user
     public function add(Request $request){
-        $user=User::create($request->all());
+        $name=$request->input('name');
+        $surname=$request->input('surname');
+        $email=$request->input('email');
+        $password=$request->input('password');
+        $rol=$request->input('rol');
+
+        $user=new User();
+        $user->name=$name;
+        $user->surname=$surname;
+        $user->email=$email;
+        $user->password=Hash::make($password);
+        $user->rol=$rol;
+
+        $user->save();
+
         return $user;
     }
 }
