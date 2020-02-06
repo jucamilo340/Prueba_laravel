@@ -23,11 +23,12 @@ Route::post('login','AuthenticateController@authenticate')->name('login');
 //PRODUCTS
 Route::post('product','ProductController@add')->name('product.add');
 Route::get('product/{id}','ProductController@get')->name('product.get');
+Route::get('category/{id}','CategoriaController@ListProducts')->name('category.get');
 Route::post('product/delete/{id}','ProductController@delete')->name('product.delete');
 Route::get('/product/file/{filename}','ProductController@getImage')->name('product.file');
 Route::group(['middleware' => ['cors']], function () {
     //Rutas a las que se permitirá acceso
-    //USERS
+    
 
 
 });
