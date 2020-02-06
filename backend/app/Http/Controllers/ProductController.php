@@ -11,7 +11,7 @@ class ProductController extends Controller
     //list all produts
     public function getAll(){
         $products=Product::all();
-        return $products;
+        return json_encode($products);
     }
     //create a product
     public function add(Request $request){

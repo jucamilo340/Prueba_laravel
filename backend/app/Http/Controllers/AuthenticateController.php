@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AuthenticateController extends Controller
 {
@@ -19,10 +20,16 @@ class AuthenticateController extends Controller
             } catch (JWTException $e) {
                 return response()->json(['error'=>'cloud_not_create']);
             }
+            $users=User::all();
+            foreach($users as $u){
+                if($request->input('email')==$u->email){
+                    $user=$u;
+                }
+            }
 
             $response=compact(['token']);
-            $response['user']=Auth::user();
+            $user->token=$response['token'];
 
-            return $response;
+            return $user;
         }
 }

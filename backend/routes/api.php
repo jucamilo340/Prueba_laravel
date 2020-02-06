@@ -16,14 +16,22 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 //USERS
+Route::get('product','ProductController@getAll')->name('products.list');
 Route::post('register','UserController@add')->name('user.add');
 Route::post('login','AuthenticateController@authenticate')->name('login');
 //PRODUCTS
-Route::get('product','ProductController@getAll')->name('products.list');
 Route::post('product','ProductController@add')->name('product.add');
 Route::get('product/{id}','ProductController@get')->name('product.get');
 Route::post('product/delete/{id}','ProductController@delete')->name('product.delete');
+Route::group(['middleware' => ['cors']], function () {
+    //Rutas a las que se permitirá acceso
+    //USERS
+
+
+});
+
+
+
 //CATEGORIES
 
